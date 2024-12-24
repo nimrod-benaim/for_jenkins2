@@ -1,6 +1,9 @@
 pipeline {
     agent any
-
+	
+    triggers {
+        pollSCM('* * * * *')  // Poll SCM every minute
+    }
     stages {
         stage('remove Repository') {
             steps {
