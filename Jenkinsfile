@@ -67,7 +67,7 @@ pipeline {
                                                      passwordVariable: 'DOCKER_PASSWORD')]) {
                         sh '''
                         echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USER" --password-stdin
-                        docker push your-dockerhub-username/your-image-name:latest
+                        docker push nimrod1/cat_gif_site:ver-1.0
                         '''
                     }
                 }
