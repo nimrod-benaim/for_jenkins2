@@ -26,6 +26,17 @@ pipeline {
                 }
             }
         }
+		stage('Remove Docker Images') {
+            steps {
+                script {
+                    echo 'Removing all Docker images...'
+                    // Remove all Docker images
+                    sh '''
+                    docker images -q | xargs -r docker rmi -f
+                    '''
+                }
+            }
+        }
         stage('Clone Repository') {
             steps {
                 echo 'Cloning the repository...'
