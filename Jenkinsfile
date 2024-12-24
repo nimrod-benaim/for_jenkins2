@@ -11,7 +11,21 @@ pipeline {
                 sh 'rm -rf for_jenkins2'
             }
         }
-    
+    stage('Stop and Remove Docker Containers') {
+            steps {
+                script {
+                    echo 'Stopping and removing all Docker containers...'
+                    // Stop all running containers
+                    sh '''
+                    docker ps -q | xargs -r docker stop
+                    '''
+                    // Remove all containers (including stopped ones)
+                    sh '''
+                    docker ps -aq | xargs -r docker rm
+                    '''
+                }
+            }
+        }
         stage('Clone Repository') {
             steps {
                 echo 'Cloning the repository...'
